@@ -1,0 +1,201 @@
+// Da Lu
+//dlu6@jhu.edu
+//data structures
+//9/20/12
+// dlu6@jhu.edu
+
+import java.util.Scanner;
+
+
+
+public class SetArray<T> implements Set<T>{
+
+	private T[] a; // creates the array
+	private int size = 0; //initialize size to 0
+	Scanner input = new Scanner(System.in);
+	
+	// This method is to find out the size of the set, big o running time is O(1).
+	public int size() {
+		
+		return size;
+	}
+	// first initialize 100 spots for a
+	public SetArray(){
+		a = (T[]) new Object[100];
+		
+	}
+	// check if the set is empty of not, big o running time is O(1) if true O(1) if false
+	public boolean isEmpty() {
+		if (size == 0)
+			return true;
+		else
+			return false;
+	}
+
+	// this method if to add new element into the set.  If the set is full, we need to double
+	// the size of the array and copy the set to a new set which is double the size.
+	//big o running is O(n) if the array is full and needs to double, else big time is O(1)
+	public boolean add(T o) {
+		
+		if (size == a.length){
+			T[] temp = (T[]) new Object[size*2];
+			for (int i = 0; i< size;i++){
+				if (o == a[i]){
+					return false;
+				}
+				temp[i] = a[i];
+				
+			}
+			a = temp;
+		}
+		
+		for (int i = 0; i< size;i++){
+			if (o == a[i]){
+				return false;
+			}
+		}
+			a[size++] = o;
+			
+		return true;
+	}
+
+	// remove method is to remove the element that user wants to remove
+	// big O running time is O(n), because we need to go through every element in the array
+	public boolean remove(T o) {
+		for (int i = 0; i< size;i++){
+			if (o == a[i]){
+				a[i] = a[size-1];
+				a[size-1] = null;
+				size--;
+				return true;
+			}
+		}
+		
+		return false;
+	}
+
+	//contain method is to find if the element is in the array, true if it is false it is not
+	// big O running time is O(n), because we need to go through every element
+	public boolean contains(T o) {
+		
+	
+		for (int i = 0; i< size;i++){
+			if (o == a[i]){
+				
+				return true;
+			}
+		}
+		return false;
+	}
+
+	// this method is to find the union of two sets
+	//if the user does not want to modify this set, big O run time will be O(n). We need to add all elements to that set.
+	//if the user wants to modify this set, big O run time will be O(n).
+	public Set<T> union(Set<T> that) {
+	
+		System.out.println("Do you want to modified this set? y/n");
+		String choice = input.next();
+		Set<T> newSet = new SetArray<T>();
+		newSet = that;
+		
+		int s = 0;
+		
+		if (choice.equals("n"))
+		{
+			for (int i = 0; i< size;i++){
+					newSet.add(a[i]);
+					//System.out.println(that); for some reason when I add element to newSet
+					//it automatically changes that(the other set)
+				}
+				
+			return newSet;	
+		}	
+		
+		else {
+			SetArray<T> newSet1 = new SetArray<T>();
+			newSet1 = (SetArray<T>) that;
+			
+			// first set newSet1 equal to that and add all the elements from this set
+			for (int i = 0; i< size;i++){
+				
+					newSet1.add(a[i]);
+					
+					if (newSet1.add(a[i]) == true){
+						s++;
+					}
+					
+				}
+			System.out.println(newSet1);
+			System.out.println(size+s);
+				
+			// then add every element from newSet1 to this set, that way we will get the union
+			for (int i = 0;i<(size+s);i++){
+				add(newSet1.a[i]);
+				
+				}
+			
+			
+			return this;
+		}
+	}
+
+	// this method is to find the intersection of the two sets.
+	// if the user wants to modify, the big run time is O(n)
+	// if the user does not want to modify, the big run time is still O(n)
+	public Set<T> intersect(Set<T> that) {
+		System.out.println("Do you want to modified this set? y/n");
+		String choice = input.next();
+		int s = 0;//to keep track the size
+		if (choice.equals("y")){
+		
+			for (int i = 0; i< size; i++){
+				if (that.contains(a[i]) == true)
+				{
+				a[s] = a[i];
+				++s;
+				
+				}
+			}
+			size = s;
+			return this;
+		
+		}
+		
+		else
+		{
+			Set<T> newSet2 = new SetArray<T>();
+			for (int i = 0; i< size; i++){
+				if (that.contains(a[i]) == true)
+				{
+				newSet2.add(a[i]);
+				}
+			}
+			
+			return newSet2;
+		}
+			
+	}
+	//this method is to print out the set in a readable way
+	// the big run time for this method is O(n), because you need to go though everyelement
+	public String toString(){
+		String s = ""; 
+		
+		for (int i =0;i<size;i++){
+			
+			if (i == size-1)
+			{
+				s = s + a[i];
+				return "{" + s + "}";
+			}
+		s = s + a[i] + ", ";
+		
+		}
+		
+		return null;
+		}
+		
+
+
+	
+}
+	

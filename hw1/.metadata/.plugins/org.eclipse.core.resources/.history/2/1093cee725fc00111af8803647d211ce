@@ -1,0 +1,263 @@
+import java.util.StringTokenizer;
+import java.text.DecimalFormat;
+
+public class TimeMil implements Time{
+
+	private int hour = 0;
+	private int minute = 0;
+	public TimeMil(String t)
+	{
+		int a = 0;
+		char when = 'a';
+		t = t.toLowerCase();
+		int index = t.indexOf('a');
+		int index1 = t.indexOf('p');
+		if (index1 < 0  && index < 0)
+			{ 
+			
+			hour = Integer.parseInt(t.substring(0,2));
+			minute = Integer.parseInt(t.substring(2,4));
+			
+			
+			}
+		else {
+			
+			if (index < 0)
+			{	index = t.indexOf('p');
+				when = 'p';
+				a = 1;
+				}
+		t = t.substring(0,index);
+		StringTokenizer tok = new StringTokenizer(t, ": ");
+		hour = Integer.parseInt(tok.nextToken());
+		if (a==1){
+			
+			// since 12pm is noon, hour will still be 12 for military time
+			if (hour == 12){
+				hour = 12;
+				System.out.print
+			}
+			else {
+			hour = hour + 12;
+			}
+		}
+		minute = Integer.parseInt(tok.nextToken());
+		
+		}
+	}
+	
+	public TimeMil(int h1, int t1, char m)
+	{
+		if ( m == 'p'){
+			hour = h1+ 12;
+			minute = t1;
+		}
+		else
+		{
+			hour = h1;
+			minute = t1;
+		}
+		
+	}
+	
+	public TimeMil(int i){
+		hour = i/100;
+		minute = i%100;
+		
+	}
+	
+	
+	
+	public String toString()
+	{
+		int k = 0;
+		String m = minute +"";
+		if (minute ==0){
+			m = "00";
+		}
+			
+		
+		if (hour >12){
+			k = 1;
+		}
+		
+		if (k == 1){
+			 
+			return (hour-12) + ":" + m + "pm";
+		
+		}
+		
+		else
+		
+			return (hour) + ":" + m + "am";
+		
+	}
+	
+
+	
+	
+	
+	public int addHours(int h){
+		int extra = 0;
+		if ( h>=24) {
+			extra = h/24;
+			hour = h-24*extra+hour;
+			return extra;
+		}
+		else{
+			hour = hour + h;
+		if (hour >=24){
+			hour = hour-24;
+			
+		return 1;
+		}
+		
+			return 0;
+		}
+	}
+	
+	
+	public int addMinutes(int m){
+		int extra = 0;
+		if ((minute + m)>=60)
+		{
+			
+			int extrahours = (m+minute)/60;
+			minute = (m+minute)%60;
+			hour = hour+extrahours;
+			if (hour >= 24){
+				extra = hour/24;
+				hour = hour - 24*extra;
+				return extra;
+			}
+			
+			return 0;
+		}
+		minute = minute + m;
+		return 0;
+	}
+	
+	public int getHour(){
+		if (hour > 12){
+			return hour-12;
+		}
+		if (hour == 0){
+			return 12;
+		}
+		return hour;
+	}
+	
+	public int getMinutes(){
+		return minute;
+	}
+	
+	
+	public boolean isAfternoon(){
+		if (hour>12)
+			return true;
+		else
+			return false;
+	}
+	
+	 public boolean isMorning(){
+		 if (hour<=12)
+			 return true;
+		 else
+			 return false;
+	 }
+	 
+	 public int military(){
+		 
+		 return hour*100 + minute;
+	 
+	 }
+	 public String militaryString(){
+		 
+		 String m = minute +"";
+		 if (minute == 0)
+		 {
+			  m = minute + "0";
+		 }
+		 if (hour<10){
+			  return "0" + hour + m;
+		 }
+		 return hour + "" + m;
+	
+	 }
+	 
+	 public int minsSinceMidnight(){
+		 if (hour == 0 && minute ==0){
+			 return 0;
+		 }
+		 return hour*60 + minute;
+	 }
+	 
+	 public int until(Time t){
+		 if (t.isMorning() == isMorning())
+		 {
+			 if (t.getHour() > getHour())
+			 {System.out.println("ahas");
+				 return (t.getHour() - getHour())*60 + t.getMinutes()-getMinutes();
+			 }
+			 
+			 if (t.getHour() == getHour()){
+				 return 0;
+			 }
+			
+			 if (t.getHour() < getHour()){
+				 System.out.println("aha");
+				 return (t.getHour() - getHour())*60 + t.getMinutes()-getMinutes() + 24*60;
+				 
+			 }
+				 
+		 }
+		 if (isMorning() == true){
+			 return (t.getHour() - getHour()+ 12)*60 + t.getMinutes()-getMinutes();
+		 }
+		 if (isMorning() == false){
+			 return (getHour()-t.getHour() + 12)*60 + t.getMinutes()-getMinutes();
+		 }
+		 return 0;
+	 }
+
+	 public int compareTo(Object other) {
+		 System.out.println(((TimeMil) other).isMorning());
+		 System.out.println(isMorning());
+		 
+		 if (((TimeMil) other).isMorning() == isMorning()  ){
+				
+			 if (((TimeMil) other).getHour() == getHour()){
+				 if (getMinutes() < ((TimeMil) other).getMinutes() )
+				 return -1;
+				 if (getMinutes() == ((TimeMil) other).getMinutes() )
+				 return 0;
+				 if (getMinutes() > ((TimeMil) other).getMinutes() )
+				 return 1;
+			 }
+		//System.out.println(hour);
+		//System.out.println(((TimeMil) other).getHour());
+			 if (getHour() < ((TimeMil) other).getHour() ){
+			System.out.println("aa");
+			return -1;}
+			 
+			 if (getHour() > ((TimeMil) other).getHour() )
+			{
+			System.out.println(((TimeMil) other).getHour());
+			System.out.println(((TimeMil) other).getMinutes());
+			System.out.println("ac");
+			return 1;}
+		 } 
+			 if (isMorning() == true)
+				 return -1;
+			 if (isMorning() == false)
+				 return 1;
+	
+		return 0;
+
+
+	 }
+	
+
+	
+	
+}

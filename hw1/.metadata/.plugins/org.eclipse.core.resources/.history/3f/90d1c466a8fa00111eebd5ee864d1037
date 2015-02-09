@@ -1,0 +1,9 @@
+
+public class test {
+	public static void main(String[] args) {
+	    
+        Time start = new TimeMil("9:30 p");
+        System.out.println(start.addMinutes(151));
+        System.out.println(start.minsSinceMidnight());
+	}
+}

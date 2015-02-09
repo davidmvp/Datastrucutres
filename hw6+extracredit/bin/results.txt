@@ -1,0 +1,40 @@
+
+				Unsorted (integers)
+
+				insert		  find 		delete		find
+For OrderedSet:                   4646		 7791		856		48
+
+For Bst Tree:			81		45		68		2
+
+For Avl Tree:			137		46		146		3
+
+				Sorted (Integers)
+
+				insert		  find 		delete		find
+For OrderedSet:                   18		 5128		4035		3
+
+For Bst Tree:			8243		 7418		990		4
+
+For Avl Tree:			26		27		32		3
+
+				Unsorted(Strings)
+				insert		  find 		delete		find
+For OrderedSet:                   4514		 7590		815		1
+
+For Bst Tree:			42		 44		18		1
+
+For Avl Tree:			44		36		24		1	
+
+				Sorted(Strings)
+
+				insert		  find 		delete		find
+For OrderedSet:                   12		 5026		4023		3
+
+For Bst Tree:			7876		 7117		994		6
+
+For Avl Tree:			26		27		37		3
+
+
+Above is the testing results.  Most of the results met my expectations. Let us talk about unsorted list for integers first.  As we can see, for unsorted list, Orderedset takes a long time to insert because if the value is big, we need to go through most of the ordered set to insert, which costs us O(n).  Bst tree takes less time than avl tree when inserting even though for the worst case, Bst tree takes O(n) to insert, but thats when the list is ordered, and because avl tree has to balance its self al the time,it costs more time.  For find, OrderedSet takes the longest because if the value we want to find is huge, it would take O(n).  I am a bit surprised that it took 46 milliseconds for my avl tree to do find while my bSt tree only took 45 milliseconds.  Since avl tree is balanced, it only take O(log n) to do each find compared to Bst tree's O(n).  There is no surprise that ordered set takes the longest to delete.  The avl tree takes longer to delete than the bst tree because the avl tree has to do the balance every time it deletes.  After we delete the all the elements, it takes much less than to find because most of the elements in the set have already been deleted and since the range of integers i used when creating the random integers is only from 1 to 10000.  There is only little elements left in the set after the delete. When comparing the unsorted integers and unsorted strings, I found that unsorted strings took less time in every category.  I guess it is probably because java runs faster when comparing strings than comparing integers.  Then I looked at the sorted integers and strings.  For OrderedSet, it takes significantly less time to complete because the list is sorted, so we add it to the end of the list every time.  It still takes a long time to find and delete.  For Bst tree, its insert time increases significantly mainly because it does not balance it self, so it basically turn into an orderedSet, and it even takes longer than ordered set because it has to make all left child null.  Since it turned into a ordered set, it also takes a long time to find and delete.  It becomes apparent now Avl tree is the best tree.  its insert , find, delete running time are significantly better when compared to bet tree and ordered set.   When comparing sorted(integers) and sorted(Strings), same thing happened.  And again Sorted strings are better than sorted integers in most categories.   
+I did the test multiple times and out of the three data structures, out of the three data structures, the avl tree  has  the most stable  result every time.  The running time for the other two data structures vary greatly from time to time.
+Overall, the Avl tree is the best data structure out of the three when the data structures requires to store hugh amount of information.  because it is a balanced tree, it only take O(log n ) to find.  But if we only have very little data , orderedSet might be the best option for us.

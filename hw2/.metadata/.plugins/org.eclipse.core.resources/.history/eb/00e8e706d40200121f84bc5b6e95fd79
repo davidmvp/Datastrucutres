@@ -1,0 +1,39 @@
+import java.util.Scanner;
+
+
+
+public class Unique {
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		Set<Integer> s  = new SetArray<Integer>();
+		String s = "";
+		int a = 0;
+		while (a == 0){
+			s = input.next();
+			if (s.equals)
+		}
+		
+		
+		System.out.println(s.toString());
+		
+		Set<String> a  = new SetArray<String>();
+		
+		a.add("java");
+		a.add("is");
+		a.add("the");
+		a.add("best");
+		a.add("language");
+		a.add("the");
+		a.add("coolest");
+		a.add("language");
+		a.add("is");
+		a.add("python");
+		
+		System.out.println(a.toString());
+		
+		
+		
+		
+		
+	}
+}

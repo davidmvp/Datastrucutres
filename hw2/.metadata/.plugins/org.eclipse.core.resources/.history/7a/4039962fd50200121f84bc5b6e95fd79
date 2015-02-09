@@ -1,0 +1,46 @@
+import java.util.Scanner;
+
+
+
+public class Unique {
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		Set<Integer> s  = new SetArray<Integer>();
+		String str = "";
+		int a = 0;
+		int b=0;
+		
+		System.out.println("Please type in the integers you want to add in the set, when you are done, please type in done");
+		while (a == 0){
+			str = input.next();
+			if (str.equals("done")){
+				a = 1;
+				System.out.println("a");
+			}
+			else{
+				s.add(Integer.parseInt(str));
+				
+			}
+		}
+		a = 0;
+		System.out.println(s.toString());
+		Set<Integer> s1  = new SetArray<Integer>();
+		System.out.println("Please type in the words you want to add in the set, when you are done, please type in done");
+		while (a == 0){
+			str = input.next();
+			if (str.equals("done")){
+				
+				a = 1;
+				System.out.println("a");
+			}
+			else{
+				s1.add(Integer.parseInt(str));
+				
+			}
+		}
+		
+		System.out.println(s1.toString());
+		
+}
+	
+}

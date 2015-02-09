@@ -1,0 +1,89 @@
+/** Interface for classes that represent Time of day objects
+*/
+
+import java.text.DecimalFormat;
+
+public interface Time extends Comparable {
+
+    // all data in a Java interface is public, static, final by default
+    DecimalFormat two0s = new DecimalFormat("00");
+    int MINS_IN_HOUR = 60;
+    int HOURS_IN_DAY = 24;
+
+    /** Convert to a standard string such as "9:30am", "12:00pm"
+        @return the string description
+    */
+    public String toString();
+    
+    /** See if two times are the same
+        @param other the time to compare to this
+        @return true if same, false otherwise
+    */
+    public boolean equals(Object other);
+
+
+/* This is inherited from the Comparable interface in the Java API
+     See which of two times is earlier in the day
+        @param other the time to compare to this
+        @return negative if this < other, 0 if same, positive if this > other
+    */
+    public int compareTo(Object other);
+
+
+    /** Calculate current time plus more hours
+        @param h the hours to add
+        @return the number of extra days
+    */
+    public int addHours(int h);
+
+    /** Add minutes to the time
+        @param m the number of minutes to add
+        @return the number of extra days
+    */
+    public int addMinutes(int m);
+
+    /** Find out the hour for this Time, 1-12
+        @return the hour
+    */
+    public int getHour();
+
+    /** Find out the minutes for this Time
+        @return the minutes
+    */
+    public int getMinutes();
+
+    /** Check if the time is in the afternoon
+        @return true if it is, false otherwise
+    */
+    public boolean isAfternoon();
+
+    /** Check if the time is in the morning
+        @return true if it is, false otherwise
+    */
+    public boolean isMorning();
+
+    /** Get the time in military format as an integer
+        @return the military time
+    */
+    public int military();
+
+    /** Get the time in military format as a 4 digit string
+        @return the military time
+    */
+    public String militaryString();
+
+
+    /** Calculate the number of minutes since midnight for this time
+        @return the minutes
+    */
+    public int minsSinceMidnight();
+
+    /** Calculate the minutes between this time and another time
+        @param t the other time, assume t is later than this,
+        if this is later than t, assume t is on the next day
+        @return the elapsed minutes
+    */
+    public int until(Time t);
+
+
+}

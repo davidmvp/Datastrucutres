@@ -1,0 +1,27 @@
+import java.util.Scanner;
+
+
+
+public class Unique {
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		Set<Integer> s  = new SetArray<Integer>();
+		String str = "";
+		int a = 0;
+		int b=0;
+		while (a == 0){
+			str = input.next();
+			if (s.equals("done")){
+				a = 1;
+			}
+			else{
+				s.add(Integer.parseInt(str));
+				
+			}
+		}
+		
+		
+		System.out.println(s.toString());
+		
+		
+}

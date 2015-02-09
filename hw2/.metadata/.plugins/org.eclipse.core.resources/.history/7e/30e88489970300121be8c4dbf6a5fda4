@@ -1,0 +1,46 @@
+
+public class testClass {
+	public static void main(String[] args) {
+		
+		Set<String> s  = new SetArray<String>();
+		s.add("21");
+		s.add("22");
+		s.add("12");
+		System.out.println(s.toString()); // test add
+		s.remove("21");
+		s.remove("10");
+		System.out.println(s.toString()); // test remove
+		if (s.isEmpty() == false){
+			System.out.println("It is not empty"); // test isEmpty
+		}
+		if (s.contains("22") == true){
+			System.out.println("The set contains it"); // test contains
+		}
+		
+		s.add("13");
+		s.add("13");
+		s.remove("13");
+		s.add("45");
+		System.out.println(s.toString());
+		
+		Set<String> a  = new SetArray<String>();
+		
+		a.add("java");
+		a.add("is");
+		a.add("the");
+		a.add("best");
+		a.add("language");
+		a.add("the");
+		a.add("coolest");
+		a.add("language");
+		a.add("is");
+		a.add("python");
+		
+		System.out.println(a.toString());
+		
+		
+		
+		
+		
+	}
+}

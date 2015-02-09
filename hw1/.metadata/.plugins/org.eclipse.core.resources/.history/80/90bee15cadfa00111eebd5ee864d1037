@@ -1,0 +1,8 @@
+
+public class test {
+	public static void main(String[] args) {
+	    
+        Time start = new TimeMil("9:30 p");
+        Time q = new TimeMil("8:30 pm")
+        System.out.println(
+}

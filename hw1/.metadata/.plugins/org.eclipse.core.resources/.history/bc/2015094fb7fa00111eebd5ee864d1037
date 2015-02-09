@@ -1,0 +1,12 @@
+
+public class test {
+	public static void main(String[] args) {
+	    
+        Time start = new TimeMil("10:33 pm");
+        start.getHour();
+        Time q = new TimeMil("8:30 pm");
+       
+        System.out.println(q.compareTo(start));
+        start.getHour();
+}
+}

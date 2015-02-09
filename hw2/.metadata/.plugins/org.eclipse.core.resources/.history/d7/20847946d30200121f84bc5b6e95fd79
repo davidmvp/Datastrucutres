@@ -1,0 +1,32 @@
+
+
+
+public class Unique {
+	public static void main(String[] args) {
+	
+		Set<String> s  = new SetArray<String>();
+		s.add("21");
+		s.add("22");
+		s.add("12");
+		s.add("3");
+		s.add("13");
+		s.add("13");
+		s.remove("13");
+		System.out.println(s.toString());
+		Set<String> a  = new SetArray<String>();
+		
+		a.add("java");
+		a.add("is");
+		a.add("the");
+		a.add("best");
+		a.add("language");
+		
+		s.intersect(a);
+		System.out.println(s.toString());
+		//s.print();
+		
+		
+		
+		
+	}
+}

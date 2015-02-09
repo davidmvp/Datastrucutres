@@ -1,0 +1,23 @@
+bubble sort  n^2
+selection sort n^2
+insertion sort n^2
+merge sort : break the list down to one element and sort them, and combine them n^2
+
+
+bubble sort 
+T(n) = T(n-1)+n => O(n^2)
+= T(n-2)+(n-1)+n = T(n-2)+ 2n-1
+= T(n-3) + (n-2)+(n-1)+n
+= T(n-x) +xn - sum(i=1,x-1)i
+= T(n-x) + sum(i=N-x+1,n)i
+
+
+merge sort
+T(n) = 2T(n/2)+ n => O(n log n)
+= 2(2T(n/4) + n/2) + n
+= 4t(n/4) + 2n
+= 4[2T(n/8) + n/4] + 2n = 8 t (n/8) + 3n
+= 8[2t(n/16) + n/8] + 3n = 16t(n/16) + 4n
+= 2^xT(N/2^x) + xN let N/2^x = 1  x = log n
+= N T(1) + log n * n
+ 

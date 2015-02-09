@@ -1,0 +1,56 @@
+Da Lu
+hw2 part b
+Data Structures
+dlu6@jhu.edu
+9/20/12
+
+1) 
+
+ADT CustomArray
+	uses Any
+	defines CustomArray<T: any>
+	operations:
+		new:  --> Integer x y x1 y1  (X and y are used for the range), (if you want 		to include x or y, set x1 y1 equal to 0, if not, set x1 y1 to 1).-/-> 		CustomArray<T>
+	
+		get: CustomArray<T> x Integer -/-> T
+		
+		set: CustomArray<T> x Integer x T -/-> CustomArray<T>
+		
+		length: CustomArray<T> ---> Integer
+		
+	pre-conditions:
+		new(x,x1,y,y1): x1 = 0 or 1; y1 = 0 or 1
+		get(a,i): 0 <=i<length(a)
+		set(a,i,t) : 0 <= i < length(a)
+
+	axioms:
+	get(set(a,i,t),j) = t if i==j, else get(a,j)
+	get(new(n,t), i) = t
+
+2) ADT Bag
+	uses Any
+	
+	defines Bag<T:any>
+	
+	operations:
+		size:->integer x -/-> Bag<T>
+
+		add-> Bag<T> ----> T
+	
+		contains-> Bag<T> ---> boolean
+
+		remove->Bag<T>---> T
+
+		isEmpty->Bag<T> --> boolean
+
+	axioms:
+		size(new()) = 0
+		remove(add(s)) = s
+		contains(add(s)) = true
+		contains(remove(s)) = false
+		if contains(s) then add(s) = s
+		if !contains(s) then remove(s) = s
+		if !contains(s) then size(add(s)) = size(s) + 1
+		if contains(s) then size(remove(s)) = size(s) - 1
+		
+3) The contact manager will the folioing classes.  I will create a person node class that has all the information that person has, include phone number, name, email, relationship and address.  I will have an array interface class that stores all the person nodes.  I have a interface because later it allows me to substitute multiple implementations that conform to the same interface.  So the interface will have the following methods:  size(), add(T o), remove(T o ), empty(boolean), contain(boolean).  So when everytime we add in the array class, program will create a node with all of that person's information and store it into the next available spot in the array.  The contact manager is basically a big data structure array that store phone numbers along with all the other information.  contact managers has array, and array has nodes.  
